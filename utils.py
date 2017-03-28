@@ -5,6 +5,8 @@ import matplotlib.image as mpimg
 import random
 import scipy.misc
 from sklearn.utils import shuffle
+import matplotlib.gridspec as gridspec
+import matplotlib.pyplot as plt
 
 """Load image paths and angle records"""
 def load(csv_filepath, records):
@@ -73,13 +75,14 @@ def showimage(im):
     plt.show()
 
 """arrange images in a grid"""
-def vis_square(data, padsize=1, padval=0):
-    # force the number of filters to be square
-    n = int(np.ceil(np.sqrt(data.shape[0])))
-    padding = ((0, n ** 2 - data.shape[0]), (0, padsize), (0, padsize)) + ((0, 0),) * (data.ndim - 3)
-    data = np.pad(data, padding, mode='constant', constant_values=(padval, padval))
-
-    # tile the filters into an image
-    data = data.reshape((n, n) + data.shape[1:]).transpose((0, 2, 1, 3) + tuple(range(4, data.ndim + 1)))
-    data = data.reshape((n * data.shape[1], n * data.shape[3]) + data.shape[4:])
-    showimage(data)
+def visualise_in_squaregrid(data, title="Image grid square"):
+    n = int(np.ceil(np.sqrt(len(data))))
+    fig = plt.figure()
+    fig.suptitle(title, fontsize=14, fontweight='bold')
+    gs = gridspec.GridSpec(n, n, wspace=0.0)
+    ax = [plt.subplot(gs[i]) for i in range(n*n)]
+    gs.update(hspace=0)
+    for i,im in enumerate(data):
+        ax[i].imshow(im)
+        ax[i].axis('off')  
+    plt.show()
