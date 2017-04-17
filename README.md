@@ -10,7 +10,8 @@ My project consists of the following files:
     * generator.py - batch generator that augments training data
     * model3_07.h5 - trained model
     * writeup.ipynb - this writeup report
-    * run1.mp4 - video of the track 1 run
+    * track1.mp4 - video of the track 1 run
+    * track2.mp4 - video of the track 1 run
     * drive.py - modified drive telemetry and control program with speed set to 18 mph for track 1. It drives reasonably well although there is more sverving around the curves at higher speed. For track2, thes speed is lowered to 15 mph, throttle to 0.3 and the steering angles increased by a constant factor to compensate for the sharp turns.
 
 #### 2. Submssion includes functional code Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing
